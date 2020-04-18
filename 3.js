@@ -1,15 +1,4 @@
-function createTri(n) { 
-    for(let i=1; i<= n; i++){
-        let str = ' '.repeat(n-i);
-        let str2 = '#'.repeat(i*2 -1);
-   
-        console.log(str + str2 + str);
-    }
-}
-  
-createTri(5);
-
-function createpi(n){
+function createtri(n){
     for(let i = 1; i <= n; i++){
         let str ='';
         for(let j = 1; j<=n-i;j++){
@@ -21,3 +10,5 @@ function createpi(n){
         console.log(str);
     }
 }
+
+createtri(5);
