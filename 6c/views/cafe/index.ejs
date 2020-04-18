@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HALAMAN STATIC</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/all.css">
+    <script src="/javascripts/all.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-light" style="box-shadow: 5px 5px 5px grey;">
+        <div class="container">
+            <div class="col-md-2">
+            <a class="navbar-brand" href="#">
+                <img src="/images/download.png" width="150" height="50" alt="">
+            </a>
+            </div>
+            <div class="col-md-8">
+                <form class="form">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search" style="background-color: rgb(182, 182, 182);">
+                </form>
+            </div>
+            <div class="col-md-2">
+            <button class="btn btn-arka my-5 my-sm-3" data-toggle="modal" data-target="#myModalAdd">ADD</button>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="table-responsive table-borderless" style="margin-top: 100px; border-radius: 20px 20px 20px 20px; box-shadow: 2px 2px 5px grey;border-collapse: collapse;">
+            <table class="table table-hoover" id="mytable">
+                <thead style= "text-align: center; background-color: #fdc611;color: rgb(255, 255, 255);" class="thead">
+                    <th>No</th>
+                    <th>Cashier</th>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </thead>
+                <tbody style= "text-align: center;">
+                    <% data.forEach(function(item){ %>
+                    <tr>
+                        <td><%= item.pid %></td>
+                        <td><%= item.casnama%></td>
+                        <td><%= item.pnama%></td>
+                        <td><%= item.catnama%></td>
+                        <td><%= item.pprice%></td>
+                        <td><div class="btn-group btn-group-sm">
+                            <a href="/cafe/edit/<%=item.pid%>"><i class="fa fa-edit fa-2x" style="color: #92f797;"></i></button>
+                            <a href="/cafe/delete/<%=item.pid%>" onclick="return confirm('Are you sure to delete this data ?')"><i class="fa fa-trash-alt fa-2x" style="color: #ffcd29;"></i></a>
+                        </div></td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <form action="/cafe/add" method="post">
+        <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Add</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+                <div class="form-group">
+                    <label>Cashier Name:</label>
+                    <select name="cashier" class="form-control">
+                        <% data.forEach(function(item){ %>
+                        <option value="<%= item.casid%>"><%= item.casnama%></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" class="form-control" name="product" value="" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Category Name</label>
+                    <select name="category" class="form-control">
+                        <% data.forEach(function(item){ %>
+                        <option value="<%= item.catid%>"><%= item.catnama%></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Product Price</label>
+                    <input type="number" class="form-control" name="price" value="" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-arka" value="Add"/>
+                </div>
+           </div>
+         </div>
+        </div>
+     </form>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
